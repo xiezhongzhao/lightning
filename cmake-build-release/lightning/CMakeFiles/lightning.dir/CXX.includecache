@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lightning/include/lightning/data/load_data.hpp
+armadillo
+-
+string
+-
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/data/load_data.cpp
+lightning/data/load_data.hpp
+-
+glog/logging.h
+-
+armadillo
+-
+fstream
+-
+string
+-
+utility
+-
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/data/tensor.cpp
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/data/tensor_util.cpp
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/layer/layer.cpp
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/parser/parser.cpp
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/runtime/runtime.cpp
+
+/mnt/e/WorkSpace/CPlusPlus/lightning/lightning/src/utils/utils.cpp
+
