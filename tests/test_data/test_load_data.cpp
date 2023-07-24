@@ -19,5 +19,25 @@
 // SOFTWARE.
 // @Author:  xiezhongzhao
 // @Email:   2234309583@qq.com
-// @Data:    2023/7/19 17:20
+// @Data:    2023/7/21 13:37
 // @Version: 1.0
+
+#include <gtest/gtest.h>
+#include <glog/logging.h>
+#include <lightning/data/load_data.hpp>
+
+TEST(test_load, load_csv_data) {
+    using namespace lightning;
+    std::string csv = "/mnt/e/WorkSpace/CPlusPlus/lightning/tmp/data_loader/data1.csv";
+    const arma::fmat &data = CSVDataLoader::LoadData(csv);
+    ASSERT_NE(data.empty(), true);
+    ASSERT_EQ(data.n_rows, 3);
+    ASSERT_EQ(data.n_cols, 4);
+    const uint32_t rows = data.n_rows;
+    const uint32_t cols = data.n_cols;
+    for (uint32_t i = 0; i < rows; ++i) {
+        for (uint32_t j = 0; j < cols; ++j) {
+            ASSERT_EQ(data.at(i, j), 1);
+        }
+    }
+}

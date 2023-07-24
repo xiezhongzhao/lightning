@@ -19,5 +19,17 @@
 // SOFTWARE.
 // @Author:  xiezhongzhao
 // @Email:   2234309583@qq.com
-// @Data:    2023/7/19 17:20
+// @Data:    2023/7/19 17:16
 // @Version: 1.0
+
+#include <gtest/gtest.h>
+#include <glog/logging.h>
+
+int main(int argc, char *argv[]) {
+    testing::InitGoogleTest(&argc, argv);
+    google::InitGoogleLogging("lightning");
+    FLAGS_alsologtostderr = true;
+
+    LOG(INFO) << "Start test... \n";
+    return RUN_ALL_TESTS();
+}
