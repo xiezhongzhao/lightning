@@ -1,8 +1,0 @@
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/CMakeFiles/edit_cache.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/lightning/CMakeFiles/rebuild_cache.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/lightning/CMakeFiles/edit_cache.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/lightning/CMakeFiles/lightning.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/tests/CMakeFiles/rebuild_cache.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/tests/CMakeFiles/edit_cache.dir
-/mnt/e/WorkSpace/CPlusPlus/lightning/cmake-build-release/tests/CMakeFiles/test.dir
