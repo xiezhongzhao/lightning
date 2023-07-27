@@ -87,6 +87,8 @@ namespace lightning{
         const std::vector<uint32_t>& raw_shapes() const;
 
         // return the data of tensor
+        arma::fcube& data();
+
         const arma::fcube& data() const;
 
         // return the index channel elements of tensor
@@ -106,6 +108,9 @@ namespace lightning{
         void Fill(float value);
 
         void Fill(const std::vector<float>& values, bool row_major=true);
+
+        // return the all data
+        std::vector<float> values(bool row_major = true);
 
         // initialize the tensor with val one
         void Ones();

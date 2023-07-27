@@ -21,3 +21,57 @@
 // @Email:   2234309583@qq.com
 // @Data:    2023/7/20 19:50
 // @Version: 1.0
+
+#include "lightning/layer/layer.hpp"
+
+namespace lightning{
+
+    const std::vector<std::shared_ptr<Tensor<float>>>& Layer::weights() const {
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+    }
+
+    const std::vector<std::shared_ptr<Tensor<float>>>& Layer::bias() const{
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+    }
+
+    void Layer::set_bias(const std::vector<float>& bias){
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+    }
+
+    void Layer::set_bias(const std::vector<std::shared_ptr<Tensor<float>>>& bias){
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+    }
+
+    void Layer::set_weights(const std::vector<float>& weights){
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+    }
+
+    void Layer::set_weights(const std::vector<std::shared_ptr<Tensor<float>>>& bias){
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+    }
+
+    InferStatus Layer::Forward(
+            const std::vector<std::shared_ptr<Tensor<float>>>& inputs,
+            std::vector<std::shared_ptr<Tensor<float>>>& outputs
+            ){
+        LOG(FATAL) << this->layer_name_ << "layer not implement yet !";
+        return InferStatus::kInferLayerNotImplement;
+    }
+
+    InferStatus Layer::Forward(){
+        LOG_IF(FATAL, this->runtime_operator_.expired())
+            << "Runtime operator is expired or nullptr";
+        const auto& runtime_operator = this->runtime_operator_.lock();
+
+        std::vector<std::shared_ptr<Tensor<float>>> layer_input_datas;
+        // ??????????
+        return InferStatus::kInferLayerNotImplement;
+    }
+
+    void Layer::set_rumtime_operator(
+            const std::shared_ptr<RuntimeOperator>& runtime_operator
+            ){
+        CHECK(runtime_operator != nullptr);
+        this->runtime_operator_ = runtime_operator;
+    }
+}

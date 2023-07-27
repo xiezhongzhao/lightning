@@ -11,7 +11,7 @@ find_package(GTest REQUIRED)
 
 #include_directories(${GTEST_INCLUDE_DIRS})
 
-set(link_lib glog::glog benchmark::benchmark OpenMP::OpenMP_CXX pthread)
+set(link_lib glog::glog benchmark::benchmark OpenMP::OpenMP_CXX pthread )
 set(link_lib ${link_lib})
 set(link_math_lib ${ARMADILLO_LIBRARIES} ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES} ${GTEST_LIBRARIES})
 

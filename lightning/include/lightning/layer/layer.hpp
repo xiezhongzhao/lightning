@@ -25,4 +25,48 @@
 #ifndef LIGHTNING_LAYER_HPP
 #define LIGHTNING_LAYER_HPP
 
+#include <glog/logging.h>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
+#include "lightning/data/tensor.hpp"
+#include "lightning/utils/status_code.hpp"
+
+namespace lightning{
+
+    class RuntimeOperator;
+
+    class Layer{
+    public:
+        explicit Layer(std::string layer_name): layer_name_(std::move(layer_name)){}
+        virtual ~Layer() = default;
+
+        virtual InferStatus Forward(
+                const std::vector<std::shared_ptr<Tensor<float>>>& inputs,
+                std::vector<std::shared_ptr<Tensor<float>>>& outputs);
+
+        virtual InferStatus Forward();
+
+        virtual const std::vector<std::shared_ptr<Tensor<float>>>& weights() const;
+
+        virtual const std::vector<std::shared_ptr<Tensor<float>>>& bias() const;
+
+        virtual void set_weights(const std::vector<std::shared_ptr<Tensor<float>>>& weights);
+
+        virtual void set_bias(const std::vector<std::shared_ptr<Tensor<float>>>& bias);
+
+        virtual void set_weights(const std::vector<float>& weights);
+
+        virtual void set_bias(const std::vector<float>& bias);
+
+        virtual const std::string& layer_name() const {return this->layer_name_;}
+
+        void set_rumtime_operator(const std::shared_ptr<RuntimeOperator>& runtimeOperator);
+
+    protected:
+        std::weak_ptr<RuntimeOperator> runtime_operator_;
+        std::string layer_name_;
+    };
+}
 #endif //LIGHTNING_LAYER_HPP
