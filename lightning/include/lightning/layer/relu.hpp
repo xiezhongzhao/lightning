@@ -40,6 +40,12 @@ namespace lightning{
                 const std::shared_ptr<RuntimeOperator>& op,
                 std::shared_ptr<Layer>& relu_layer);
     };
+
 } // namespace lightning
 
 #endif //LIGHTNING_RELU_HPP
+
+
+
+
+

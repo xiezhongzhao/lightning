@@ -22,8 +22,8 @@
 // @Data:    2023/7/26 15:54
 // @Version: 1.0
 
-#include "lightning/layer/layer_factory.hpp"
 #include <set>
+#include <lightning/layer/layer_factory.hpp>
 
 namespace lightning{
 
@@ -50,10 +50,11 @@ namespace lightning{
     std::shared_ptr<Layer> LayerRegisterer::CreateLayer(
             const std::shared_ptr<RuntimeOperator> &op) {
         CreateRegistry* registry = Registry();
-        const std::string& layer_type = op->type; // ????
+        const std::string& layer_type = op->type;
         LOG_IF(FATAL, registry->count(layer_type) <= 0)
             << "Can not find the layer type: " << layer_type;
-        const auto& creator = registry->find(layer_type)->second;
+        const auto& creator
+            = registry->find(layer_type)->second;
 
         LOG_IF(FATAL, !creator) << "Layer creator is empty !";
         std::shared_ptr<Layer> layer;
@@ -74,7 +75,6 @@ namespace lightning{
         }
         std::vector<std::string> layer_types(layer_types_unique.begin(),
                                              layer_types_unique.end());
-
         return layer_types;
     }
 }

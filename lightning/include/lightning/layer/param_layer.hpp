@@ -25,9 +25,10 @@
 #ifndef LIGHTNING_PARAM_LAYER_HPP
 #define LIGHTNING_PARAM_LAYER_HPP
 
-#include "layer.hpp"
+#include <lightning/layer/layer.hpp>
 
 namespace lightning{
+
     class ParamLayer : public Layer{
     public:
         explicit ParamLayer(const std::string &layer_name);

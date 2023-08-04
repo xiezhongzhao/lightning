@@ -104,14 +104,14 @@ InferStatus ReluLayer::Forward(const std::vector<std::shared_ptr<Tensor<float>>>
             j += 1;
         }
     }
-
 #endif
     }
     return InferStatus::kInferSuccess;
 }
 
-ParseParameterAttrStatus ReluLayer::GetInstance(const std::shared_ptr<RuntimeOperator> &op,
-                                                std::shared_ptr<Layer> &relu_layer) {
+ParseParameterAttrStatus ReluLayer::GetInstance(
+        const std::shared_ptr<RuntimeOperator> &op,
+        std::shared_ptr<Layer> &relu_layer) {
     CHECK(op != nullptr) << "Relu operator is nullptr";
     relu_layer = std::make_shared<ReluLayer>();
     return ParseParameterAttrStatus::kParameterAttrParseSuccess;
@@ -120,3 +120,10 @@ ParseParameterAttrStatus ReluLayer::GetInstance(const std::shared_ptr<RuntimeOpe
 LayerRegistererWrapper kReluGetInstance("nn.ReLU", ReluLayer::GetInstance);
 
 } // namespace ligthning
+
+
+
+
+
+
+

@@ -30,8 +30,10 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "lightning/data/tensor.hpp"
-#include "lightning/utils/status_code.hpp"
+
+#include <lightning/runtime/runtime_op.hpp>
+#include <lightning/data/tensor.hpp>
+#include <lightning/utils/status_code.hpp>
 
 namespace lightning{
 

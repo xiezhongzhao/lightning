@@ -28,8 +28,9 @@
 #include <map>
 #include <memory>
 #include <string>
-#include "layer.hpp"
-#include "lightning/runtime/runtime_op.hpp"
+
+#include <lightning/layer/layer.hpp>
+#include <lightning/runtime/runtime_op.hpp>
 
 namespace lightning{
 
@@ -69,6 +70,7 @@ namespace lightning{
             LayerRegisterer::RegisterCreator(layer_type, creator);
         }
     };
+
     // manage the memory of op registry
     class RegistryGarbageCollector{
     public:
@@ -86,3 +88,9 @@ namespace lightning{
 }
 
 #endif //LIGHTNING_LAYER_FACTORY_HPP
+
+
+
+
+
+

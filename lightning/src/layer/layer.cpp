@@ -64,8 +64,24 @@ namespace lightning{
         const auto& runtime_operator = this->runtime_operator_.lock();
 
         std::vector<std::shared_ptr<Tensor<float>>> layer_input_datas;
-        // ??????????
-        return InferStatus::kInferLayerNotImplement;
+        for (const auto& input_operand_data : runtime_operator->input_operands_seq) {
+            std::copy(input_operand_data->datas.begin(),
+                      input_operand_data->datas.end(),
+                      std::back_inserter(layer_input_datas));
+        }
+
+        const std::shared_ptr<RuntimeOperand>& output_operand_datas =
+                runtime_operator->output_operands;
+
+        CHECK(!layer_input_datas.empty())
+                        << runtime_operator->name << " Layer input data is empty";
+        CHECK(output_operand_datas != nullptr && !output_operand_datas->datas.empty())
+                        << "Layer output data is empty";
+        // 执行operator当中的layer计算过程
+        // layer的计算结果存放在current_op->output_operands->datas中
+        InferStatus status = runtime_operator->layer->Forward(
+                layer_input_datas, output_operand_datas->datas);
+        return status;
     }
 
     void Layer::set_rumtime_operator(

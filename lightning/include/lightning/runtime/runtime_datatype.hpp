@@ -19,10 +19,31 @@
 // SOFTWARE.
 // @Author:  xiezhongzhao
 // @Email:   2234309583@qq.com
-// @Data:    2023/7/26 17:55
+// @Data:    2023/8/1 15:59
 // @Version: 1.0
 
 #ifndef LIGHTNING_RUNTIME_DATATYPE_HPP
 #define LIGHTNING_RUNTIME_DATATYPE_HPP
 
+/// 计算节点属性中的权重类型
+enum class RuntimeDataType {
+    kTypeUnknown = 0,
+    kTypeFloat32 = 1,
+    kTypeFloat64 = 2,
+    kTypeFloat16 = 3,
+    kTypeInt32 = 4,
+    kTypeInt64 = 5,
+    kTypeInt16 = 6,
+    kTypeInt8 = 7,
+    kTypeUInt8 = 8,
+};
+
 #endif //LIGHTNING_RUNTIME_DATATYPE_HPP
+
+
+
+
+
+
+
+

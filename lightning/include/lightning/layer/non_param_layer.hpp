@@ -25,7 +25,7 @@
 #ifndef LIGHTNING_NON_PARAM_LAYER_HPP
 #define LIGHTNING_NON_PARAM_LAYER_HPP
 
-#include "layer.hpp"
+#include <lightning/layer/layer.hpp>
 
 namespace lightning{
    using NonParamLayer = Layer;
