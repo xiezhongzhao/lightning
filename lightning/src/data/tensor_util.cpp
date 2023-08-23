@@ -203,7 +203,8 @@ namespace lightning{
             CHECK(tensor1->channels() == tensor2->channels());
             if (tensor2->rows() == 1 && tensor2->cols() == 1) {
                 sftensor new_tensor =
-                        TensorCreate(tensor2->channels(), tensor1->rows(), tensor1->cols());
+                        TensorCreate(tensor2->channels(),
+                                     tensor1->rows(),tensor1->cols());
                 CHECK(tensor2->size() == tensor2->channels());
                 for (uint32_t c = 0; c < tensor2->channels(); ++c) {
                     arma::fmat& new_tensor_channel = new_tensor->slice(c);
@@ -213,7 +214,8 @@ namespace lightning{
                 return {tensor1, new_tensor};
             } else if (tensor1->rows() == 1 && tensor1->cols() == 1) {
                 sftensor new_tensor =
-                        TensorCreate(tensor1->channels(), tensor2->rows(), tensor2->cols());
+                        TensorCreate(tensor1->channels(),
+                                     tensor2->rows(), tensor2->cols());
                 CHECK(tensor1->size() == tensor1->channels());
                 for (uint32_t c = 0; c < tensor1->channels(); ++c) {
                     arma::fmat& new_tensor_channel = new_tensor->slice(c);
@@ -229,8 +231,7 @@ namespace lightning{
     }
 
     std::shared_ptr<Tensor<float>> TensorClone(
-            std::shared_ptr<Tensor<float>> tensor
-            ){
+            std::shared_ptr<Tensor<float>> tensor){
         return std::make_shared<Tensor<float>>(*tensor);
     }
 }

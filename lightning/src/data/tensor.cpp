@@ -50,7 +50,7 @@ namespace lightning{
         if(rows == 1){
             this->raw_shapes_ = std::vector<uint32_t>{cols};
         }else{
-            this->raw_shapes_ = std::vector<uint32_t>(rows, cols);
+            this->raw_shapes_ = std::vector<uint32_t>{rows, cols};
         }
     }
 
@@ -105,7 +105,7 @@ namespace lightning{
         this->data_ = data;
     }
 
-    bool Tensor<float>::empty() const {return this->data_.empty();}
+    bool Tensor<float>::empty() const { return this->data_.empty();}
 
     float Tensor<float>::index(uint32_t offset) const{
         CHECK(offset < this->data_.size()) << "Tensor index out of bound. ";
@@ -164,7 +164,8 @@ namespace lightning{
                              this->data_.n_slices);
         new_data.fill(padding_value);
 
-        new_data.subcube(pad_rows1, pad_cols1, 0, new_data.n_rows - pad_rows2 - 1,
+        new_data.subcube(pad_rows1, pad_cols1, 0,
+                         new_data.n_rows - pad_rows2 - 1,
                          new_data.n_cols - pad_cols2 - 1, new_data.n_slices - 1) =
                 this->data_;
         this->data_ = std::move(new_data);
@@ -190,7 +191,8 @@ namespace lightning{
             for (uint32_t i = 0; i < channels; ++i) {
                 auto& channel_data = this->data_.slice(i);
                 arma::fmat channel_data_t((float*)values.data() + i * planes,
-                                          this->cols(), this->rows(), false, true);
+                                          this->cols(), this->rows(),
+                                          false, true);
                 channel_data = channel_data_t.t();
             }
         } else {
@@ -239,7 +241,8 @@ namespace lightning{
         CHECK(!shapes.empty());
         const uint32_t origin_size = this->size();
         const uint32_t current_size =
-                std::accumulate(shapes.begin(), shapes.end(), 1, std::multiplies());
+                std::accumulate(shapes.begin(), shapes.end(),
+                                1, std::multiplies());
         CHECK(shapes.size() <= 3);
         CHECK(current_size == origin_size);
 

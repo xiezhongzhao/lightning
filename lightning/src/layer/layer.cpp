@@ -64,7 +64,8 @@ namespace lightning{
         const auto& runtime_operator = this->runtime_operator_.lock();
 
         std::vector<std::shared_ptr<Tensor<float>>> layer_input_datas;
-        for (const auto& input_operand_data : runtime_operator->input_operands_seq) {
+        for (const auto& input_operand_data
+            : runtime_operator->input_operands_seq) {
             std::copy(input_operand_data->datas.begin(),
                       input_operand_data->datas.end(),
                       std::back_inserter(layer_input_datas));

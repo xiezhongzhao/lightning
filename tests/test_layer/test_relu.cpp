@@ -19,57 +19,45 @@
 // SOFTWARE.
 // @Author:  xiezhongzhao
 // @Email:   2234309583@qq.com
-// @Data:    2023/7/26 17:57
+// @Data:    2023/8/4 17:47
 // @Version: 1.0
 
-#ifndef LIGHTNING_STORE_ZIP_HPP
-#define LIGHTNING_STORE_ZIP_HPP
+#include <gtest/gtest.h>
+#include <glog/logging.h>
 
-#include <map>
-#include <string>
-#include <vector>
-#include <cstdint>
+#include <lightning/data/tensor.hpp>
+#include <lightning/layer/relu.hpp>
 
-namespace pnnx{
+TEST(test_layer, forward_relu1){
+    using namespace lightning;
+    std::shared_ptr<Tensor<float>> input
+        = std::make_shared<Tensor<float>>(32, 224, 512);
+    input->Rand();
+    std::vector<std::shared_ptr<Tensor<float>>> inputs;
+    inputs.push_back(input);
+    std::vector<std::shared_ptr<Tensor<float>>> outputs(1);
 
-    class StoreZipReader{
-    public:
-        StoreZipReader();
-        ~StoreZipReader();
-
-        int open(const std::string& path);
-        size_t get_file_size(const std::string& name);
-        int read_file(const std::string& name, char* data);
-        int close();
-
-    private:
-        FILE* fp;
-        struct StoreZipMeta{
-            size_t offset;
-            size_t size;
-        };
-        std::map<std::string, StoreZipMeta> filemetas;
-    };
-
-    class StoreZipWriter{
-    public:
-        StoreZipWriter();
-        ~StoreZipWriter();
-
-        int open(const std::string& path);
-        int write_file(const std::string& name, const char* data, size_t size);
-        int close();
-    private:
-        FILE* fp;
-
-        struct StoreZipMeta{
-            std::string name;
-            size_t lfh_offset;
-            uint32_t crc32;
-            uint32_t size;
-        };
-        std::vector<StoreZipMeta> filemetas;
-    };
+    ReluLayer relu_layer;
+    const auto status = relu_layer.Forward(inputs, outputs);
+    ASSERT_EQ(status, InferStatus::kInferSuccess);
+    for(int i=0; i<inputs.size(); ++i){
+        std::shared_ptr<Tensor<float>> input_ = inputs.at(i);
+        input_->Transform([](const float f){
+            if(f < 0){
+                return 0.f;
+            }else{
+                return f;
+            }
+        });
+        std::shared_ptr<Tensor<float>> output_ = outputs.at(i);
+        CHECK(input_->size() == output_->size());
+        uint32_t size = input_->size();
+        for(uint32_t j=0; j<size; ++j){
+            ASSERT_EQ(output_->index(j), input_->index(j));
+        }
+    }
 }
 
-#endif //LIGHTNING_STORE_ZIP_HPP
+
+
+

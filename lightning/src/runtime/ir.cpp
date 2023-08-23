@@ -33,6 +33,7 @@
 
 #include <lightning/runtime/ir.hpp>
 #include <lightning/runtime/store_zip.hpp>
+#include <iostream>
 
 #if BUILD_PNNX
 #include <torch/script.h>

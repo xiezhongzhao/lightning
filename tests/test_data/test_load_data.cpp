@@ -26,9 +26,11 @@
 #include <glog/logging.h>
 #include <lightning/data/load_data.hpp>
 
+std::string root_dir = "/mnt/e/WorkSpace/CPlusPlus/lightning/tmp/";
+
 TEST(test_load, load_csv_data) {
     using namespace lightning;
-    std::string csv = "/mnt/e/WorkSpace/CPlusPlus/lightning/tmp/data_loader/data1.csv";
+    std::string csv = root_dir + "data_loader/data1.csv";
     const arma::fmat &data = CSVDataLoader::LoadData(csv);
     ASSERT_NE(data.empty(), true);
     ASSERT_EQ(data.n_rows, 3);
@@ -41,6 +43,9 @@ TEST(test_load, load_csv_data) {
         }
     }
 }
+
+
+
 
 
 

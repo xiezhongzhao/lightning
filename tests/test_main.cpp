@@ -28,8 +28,15 @@
 int main(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);
     google::InitGoogleLogging("lightning");
+//    FLAGS_log_dir = "log.log";
     FLAGS_alsologtostderr = true;
 
     LOG(INFO) << "Start test... \n";
     return RUN_ALL_TESTS();
 }
+
+
+
+
+
+

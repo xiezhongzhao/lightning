@@ -143,6 +143,7 @@ namespace lightning{
         std::vector<uint32_t> raw_shapes_; // tensor shape
         arma::fcube data_; // tensor data
     };
+
     using ftensor = Tensor<float>;
     using sftensor = std::shared_ptr<Tensor<float>>;
 

@@ -19,57 +19,5 @@
 // SOFTWARE.
 // @Author:  xiezhongzhao
 // @Email:   2234309583@qq.com
-// @Data:    2023/7/26 17:57
+// @Data:    2023/8/4 17:48
 // @Version: 1.0
-
-#ifndef LIGHTNING_STORE_ZIP_HPP
-#define LIGHTNING_STORE_ZIP_HPP
-
-#include <map>
-#include <string>
-#include <vector>
-#include <cstdint>
-
-namespace pnnx{
-
-    class StoreZipReader{
-    public:
-        StoreZipReader();
-        ~StoreZipReader();
-
-        int open(const std::string& path);
-        size_t get_file_size(const std::string& name);
-        int read_file(const std::string& name, char* data);
-        int close();
-
-    private:
-        FILE* fp;
-        struct StoreZipMeta{
-            size_t offset;
-            size_t size;
-        };
-        std::map<std::string, StoreZipMeta> filemetas;
-    };
-
-    class StoreZipWriter{
-    public:
-        StoreZipWriter();
-        ~StoreZipWriter();
-
-        int open(const std::string& path);
-        int write_file(const std::string& name, const char* data, size_t size);
-        int close();
-    private:
-        FILE* fp;
-
-        struct StoreZipMeta{
-            std::string name;
-            size_t lfh_offset;
-            uint32_t crc32;
-            uint32_t size;
-        };
-        std::vector<StoreZipMeta> filemetas;
-    };
-}
-
-#endif //LIGHTNING_STORE_ZIP_HPP

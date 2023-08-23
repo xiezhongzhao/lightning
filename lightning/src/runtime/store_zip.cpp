@@ -24,9 +24,15 @@
 
 #include <lightning/runtime/store_zip.hpp>
 
+#include <stdint.h>
+#include <stdio.h>
+#include <map>
+#include <string>
+#include <vector>
+
 namespace pnnx{
 
-    // https://stackoverflow.com/questions/1537964/visual-c-equivalent-of-gccs-attribute-packed
+// https://stackoverflow.com/questions/1537964/visual-c-equivalent-of-gccs-attribute-packed
 #ifdef _MSC_VER
 #define PACK(__Declaration__) __pragma(pack(push, 1)) __Declaration__ __pragma(pack(pop))
 #else

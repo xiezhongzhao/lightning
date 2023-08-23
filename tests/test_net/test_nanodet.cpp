@@ -19,57 +19,30 @@
 // SOFTWARE.
 // @Author:  xiezhongzhao
 // @Email:   2234309583@qq.com
-// @Data:    2023/7/26 17:57
+// @Data:    2023/8/4 17:48
 // @Version: 1.0
 
-#ifndef LIGHTNING_STORE_ZIP_HPP
-#define LIGHTNING_STORE_ZIP_HPP
+#include <gtest/gtest.h>
+#include <glog/logging.h>
 
-#include <map>
-#include <string>
-#include <vector>
-#include <cstdint>
+TEST(test_net, test_glog1){
 
-namespace pnnx{
+    int value = 15;
 
-    class StoreZipReader{
-    public:
-        StoreZipReader();
-        ~StoreZipReader();
+    CHECK(value > 5) << "Value is not greater than 5 " << value;
+    CHECK_EQ(value, 15) << "Value is not equal to 15 ";
+    CHECK_NE(value, 16) << "Value is equal to 16";
+    CHECK_GE(value, 0) << "Value is not less than 0";
+    CHECK_LT(value, 16);
 
-        int open(const std::string& path);
-        size_t get_file_size(const std::string& name);
-        int read_file(const std::string& name, char* data);
-        int close();
+    const char* str = "hello";
+    CHECK_STREQ(str, "hello") << "String are not equal";
 
-    private:
-        FILE* fp;
-        struct StoreZipMeta{
-            size_t offset;
-            size_t size;
-        };
-        std::map<std::string, StoreZipMeta> filemetas;
-    };
+    double pi = 3.14159;
+    CHECK_DOUBLE_EQ(pi, 3.14159);
 
-    class StoreZipWriter{
-    public:
-        StoreZipWriter();
-        ~StoreZipWriter();
+    CHECK_ERR(value);
 
-        int open(const std::string& path);
-        int write_file(const std::string& name, const char* data, size_t size);
-        int close();
-    private:
-        FILE* fp;
+    ASSERT_EQ(12, 12);
 
-        struct StoreZipMeta{
-            std::string name;
-            size_t lfh_offset;
-            uint32_t crc32;
-            uint32_t size;
-        };
-        std::vector<StoreZipMeta> filemetas;
-    };
 }
-
-#endif //LIGHTNING_STORE_ZIP_HPP

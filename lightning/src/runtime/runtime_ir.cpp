@@ -351,7 +351,7 @@ namespace lightning{
                                       const std::shared_ptr<RuntimeOperator> &runtime_operator) {
         for(const auto& [name, attr] : attrs){
             switch(attr.type){
-                case1: {
+                case 1: {
                     std::shared_ptr<RuntimeAttribute> runtime_attribute
                         = std::shared_ptr<RuntimeAttribute>();
                     runtime_attribute->type = RuntimeDataType::kTypeFloat32;

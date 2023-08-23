@@ -117,7 +117,8 @@ ParseParameterAttrStatus ReluLayer::GetInstance(
     return ParseParameterAttrStatus::kParameterAttrParseSuccess;
 }
 
-LayerRegistererWrapper kReluGetInstance("nn.ReLU", ReluLayer::GetInstance);
+LayerRegistererWrapper kReluGetInstance("nn.ReLU",
+                                        ReluLayer::GetInstance);
 
 } // namespace ligthning
 

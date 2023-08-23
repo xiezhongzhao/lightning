@@ -70,7 +70,7 @@ namespace lightning{
     }
 
     void RuntimeOperatorUtils::InitOperatorOutput(
-            const std::vector<pnnx::Operator *> &pnnx_operators,
+            const std::vector<pnnx::Operator*> &pnnx_operators,
             const std::vector<std::shared_ptr<RuntimeOperator>> &operators) {
         CHECK(!pnnx_operators.empty() && !operators.empty());
         CHECK(pnnx_operators.size() == operators.size());
